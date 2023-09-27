@@ -1,0 +1,97 @@
+.header {
+  @apply w-full h-16 z-40;
+  @apply border-y border-solid;
+  @apply flex justify-between;
+  @apply px-20 py-4;
+  @apply fixed;
+  > div:nth-child(2) {
+    @apply absolute;
+    @apply left-1/2 -translate-x-1/2;
+  }
+  &.expanded {
+    @apply border-b-0;
+  }
+}
+.search-bar {
+  @apply relative z-40;
+  @apply flex items-center;
+  @apply w-[20.75rem];
+  @apply h-9;
+  @apply divide-x divide-slate-300;
+  @apply border border-solid border-slate-300 rounded-2xl;
+  @apply shadow-sm hover:shadow-md;
+  button {
+    @apply h-max;
+    @apply px-4;
+    @apply text-sm;
+    @apply text-text-black font-semibold;
+    &:last-of-type {
+      @apply text-text-gray font-normal;
+      @apply mr-4;
+    }
+  }
+  :last-child {
+    @apply border-none;
+    @apply absolute right-0;
+    @apply cursor-pointer;
+    @apply fill-accent;
+  }
+}
+.user-center {
+  @apply flex items-center;
+  > div:nth-child(1) {
+    @apply text-sm px-3 py-1;
+    @apply rounded-2xl hover:bg-shadow hover:cursor-pointer;
+  }
+  > div:nth-child(3) {
+    @apply inline-flex items-center;
+    @apply rounded-2xl pl-2 shadow-md ml-2;
+    .avatar {
+      @apply w-[1.875rem] h-[1.875rem] rounded-full ml-3;
+    }
+  }
+}
+.nav-item {
+  @apply text-lg font-normal;
+  /* @apply !block; */
+  > div {
+    @apply mx-4 my-2;
+    * {
+      @apply block;
+    }
+    &:hover:not(.active-tab) {
+      @apply !text-text-gray;
+      &:after {
+        @apply border-text-gray;
+        @apply duration-300 scale-x-100;
+      }
+    }
+    &::after {
+      @apply w-full;
+      @apply border-b border-text-black;
+      content: "";
+      @apply block;
+    }
+    &:not(.active-tab)::after {
+      @apply scale-x-0;
+    }
+    .active-tab {
+      @apply !text-text-black;
+    }
+  }
+}
+.search-tabs {
+  @apply bg-bg-gray;
+  @apply h-16;
+}
+.search-tab-item {
+  @apply inline-block cursor-pointer;
+  @apply rounded-[2rem] h-16 w-max;
+  @apply px-8 py-4;
+  input {
+    @apply outline-0 bg-transparent;
+  }
+  &:hover {
+    @apply bg-slate-300;
+  }
+}

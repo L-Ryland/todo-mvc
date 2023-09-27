@@ -1,0 +1,13 @@
+.card {
+  @apply rounded-[2rem] px-12 py-3 bg-white w-fit;
+  .pic-option {
+    @apply text-sm p-1;
+    > img:nth-child(2) {
+      @apply h-32 w-32;
+      @apply border-border-shadow border rounded-xl hover:border-black;
+    }
+    > label:nth-child(3) {
+      @apply mt-2;
+    }
+  }
+}

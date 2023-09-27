@@ -1,0 +1,35 @@
+.card {
+  @apply rounded-[2rem] px-8 py-4 bg-white relative w-max;
+  button {
+    @apply h-8 w-8 z-50 disabled:invisible;
+    > svg {
+      @apply h-4;
+    }
+  }
+}
+.month-view {
+  @apply relative;
+  @apply w-max;
+  table {
+    @apply w-[24.375rem] px-7 border-collapse;
+    * {
+      @apply text-center;
+    }
+    thead {
+      @apply text-xs text-text-gray;
+    }
+    tbody {
+      @apply text-sm;
+      tr div {
+        @apply h-12 w-12 rounded-full border-black;
+        @apply flex items-center justify-center;
+        &:hover {
+          @apply border cursor-pointer;
+        }
+        &.disabled {
+          @apply border-0 cursor-default text-slate-300;
+        }
+      }
+    }
+  }
+}

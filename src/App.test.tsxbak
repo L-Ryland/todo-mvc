@@ -1,0 +1,13 @@
+// import { describe, test } from "vitest";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+describe("test App", () => {
+  test("loads App", (params) => {
+    // given
+    render(<App />);
+    // when
+    const element = screen.getByText(/count is/i);
+    // then
+    expect(element).toBeInTheDocument();
+  });
+});
