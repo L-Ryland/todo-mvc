@@ -18,6 +18,7 @@ export const NewTodo = () => {
         value={inputText}
         onChange={(event) => setInputText(event.target.value)}
         onKeyUp={handleCommit}
+        placeholder="What needs to be done?"
       />
       <AiOutlineCheck className="absolute top-1/2 -translate-y-1/2 left-2 cursor-pointer" onClick={completeAllTodos} />
     </div>
