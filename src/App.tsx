@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 // import ReactLogo from "./assets/react.svg";
 import "./App.css";
-import { Header, TodoItem } from "@components/";
+import { TodoItem } from "@components/";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import queryClient from "@utils/queryClient";
