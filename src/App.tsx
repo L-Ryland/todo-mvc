@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import queryClient from "@utils/queryClient";
 import { NewTodo } from "@/components";
 import { useTodoStore } from "./store";
+import { Button, Card, ListGroup } from "flowbite-react";
 import { cx } from "@emotion/css";
 
 function App() {
@@ -25,45 +26,29 @@ function App() {
       return [];
     }
   }, [mode, todos]);
+  
+  const activeButtonColor = (val: string) => {
+    return val === mode ? "info" : "gray";
+  }
   return (
     <QueryClientProvider client={queryClient}>
       <h1 className="text-5xl w-full">todos</h1>
-      <div className="border w-full lg:w-[500px] m-auto">
+      <Card className=" w-full lg:w-[700px] m-auto">
         <NewTodo />
+        <ListGroup>
         {todosToDisplay.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
+          <ListGroup.Item key={todo.id}>
+            <TodoItem key={todo.id} {...todo} />
+          </ListGroup.Item>
         ))}
-        <div className="flex justify-between p-4 items-center border-t">
+        </ListGroup>
+        <div className="flex justify-between items-center">
           <span>{activeTodos.length} items left</span>
-          <div className="flex text-sm">
-            <button
-              className={cx([
-                "border p-1",
-                { "border-red-500": mode === "all" },
-              ])}
-              onClick={() => setMode("all")}
-            >
-              All
-            </button>
-            <button
-              className={cx([
-                "border p-1",
-                { "border-red-500": mode === "active" },
-              ])}
-              onClick={() => setMode("active")}
-            >
-              Active
-            </button>
-            <button
-              className={cx([
-                "border p-1",
-                { "border-red-500": mode === "completed" },
-              ])}
-              onClick={() => setMode("completed")}
-            >
-              Completed
-            </button>
-          </div>
+          <Button.Group outline>
+            <Button onClick={() => setMode("all")} color={activeButtonColor("all")}>All</Button>
+            <Button onClick={() => setMode("active")} color={activeButtonColor("active")}>Active</Button>
+            <Button onClick={() => setMode("completed")} color={activeButtonColor("completed")}>Completed</Button>
+          </Button.Group>
           <span
             className={cx([
               "hover:underline text-sm cursor-pointer",
@@ -74,7 +59,7 @@ function App() {
             Clear Completed
           </span>
         </div>
-      </div>
+      </Card>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

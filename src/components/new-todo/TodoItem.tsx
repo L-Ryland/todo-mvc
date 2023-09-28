@@ -24,7 +24,7 @@ export const TodoItem: FC<Todo> = ({ title, id, completed }) => {
   }
 
   return (
-    <div className="group text-left flex p-4 justify-between items-center">
+    <div className="group text-left flex p-4 justify-between items-center w-full">
       <div className="flex gap-4 grow items-center">
         {completed ? (
           <FiCheckCircle className="text-2xl text-green-500" onClick={toggleCompleteState} />

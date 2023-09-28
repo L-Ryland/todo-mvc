@@ -1,6 +1,8 @@
 import { useTodoStore } from "@/store";
 import { KeyboardEventHandler, useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
+import { TextInput } from "flowbite-react";
+
 export const NewTodo = () => {
   const [inputText, setInputText] = useState<string>("");
   const { addTodo, completeAllTodos } = useTodoStore();
@@ -9,18 +11,20 @@ export const NewTodo = () => {
       addTodo(inputText);
       setInputText("");
     }
-  }
+  };
   return (
     <div className="relative border-b">
-      <input
-        className="border-none outline-none w-full pl-8"
-        style={{ boxShadow: "none" }}
+      <TextInput
+        addon={
+          <AiOutlineCheck
+            className="cursor-pointer"
+            onClick={completeAllTodos}
+          />
+        }
         value={inputText}
         onChange={(event) => setInputText(event.target.value)}
-        onKeyUp={handleCommit}
         placeholder="What needs to be done?"
       />
-      <AiOutlineCheck className="absolute top-1/2 -translate-y-1/2 left-2 cursor-pointer" onClick={completeAllTodos} />
     </div>
   );
 };
