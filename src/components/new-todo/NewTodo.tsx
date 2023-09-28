@@ -23,6 +23,7 @@ export const NewTodo = () => {
         }
         value={inputText}
         onChange={(event) => setInputText(event.target.value)}
+        onKeyDown={handleCommit}
         placeholder="What needs to be done?"
       />
     </div>
