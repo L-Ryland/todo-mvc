@@ -27,8 +27,8 @@ function App() {
   }, [mode, todos]);
   return (
     <QueryClientProvider client={queryClient}>
-      <h1 className="text-5xl">todos</h1>
-      <div className="border w-[500px] m-auto">
+      <h1 className="text-5xl w-full">todos</h1>
+      <div className="border w-full lg:w-[500px] m-auto">
         <NewTodo />
         {todosToDisplay.map((todo) => (
           <TodoItem key={todo.id} {...todo} />
