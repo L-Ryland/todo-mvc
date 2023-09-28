@@ -26,40 +26,61 @@ function App() {
       return [];
     }
   }, [mode, todos]);
-  
+
   const activeButtonColor = (val: string) => {
     return val === mode ? "info" : "gray";
-  }
+  };
   return (
     <QueryClientProvider client={queryClient}>
-      <h1 className="text-5xl w-full">todos</h1>
-      <Card className=" w-full lg:w-[700px] m-auto">
-        <NewTodo />
-        <ListGroup>
-        {todosToDisplay.map((todo) => (
-          <ListGroup.Item key={todo.id}>
-            <TodoItem key={todo.id} {...todo} />
-          </ListGroup.Item>
-        ))}
-        </ListGroup>
-        <div className="flex justify-between items-center">
-          <span>{activeTodos.length} items left</span>
-          <Button.Group outline>
-            <Button onClick={() => setMode("all")} color={activeButtonColor("all")}>All</Button>
-            <Button onClick={() => setMode("active")} color={activeButtonColor("active")}>Active</Button>
-            <Button onClick={() => setMode("completed")} color={activeButtonColor("completed")}>Completed</Button>
-          </Button.Group>
-          <span
-            className={cx([
-              "hover:underline text-sm cursor-pointer",
-              { invisible: completeTodos.length === todos.length },
-            ])}
-            onClick={removeCompleted}
-          >
-            Clear Completed
-          </span>
-        </div>
-      </Card>
+      <div className="p-4">
+        <h1 className="text-5xl w-full">todos</h1>
+        <Card className=" w-full lg:w-[700px] my-8 mx-auto">
+          <NewTodo />
+          <ListGroup>
+            {todosToDisplay.map((todo) => (
+              <ListGroup.Item key={todo.id}>
+                <TodoItem key={todo.id} {...todo} />
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+          <div className="flex justify-between items-center">
+            <span>
+              {activeTodos.length}
+              <span className="hidden md:inline"> items left</span>
+            </span>
+            <Button.Group outline>
+              <Button
+                onClick={() => setMode("all")}
+                color={activeButtonColor("all")}
+              >
+                All
+              </Button>
+              <Button
+                onClick={() => setMode("active")}
+                color={activeButtonColor("active")}
+              >
+                Active
+              </Button>
+              <Button
+                onClick={() => setMode("completed")}
+                color={activeButtonColor("completed")}
+              >
+                Completed
+              </Button>
+            </Button.Group>
+            <span
+              className={cx([
+                "hover:underline text-sm cursor-pointer underline md:no-underline",
+                { invisible: completeTodos.length === todos.length },
+              ])}
+              onClick={removeCompleted}
+            >
+              <span className="hidden md:inline">Clear Completed</span>
+              <span className="md:hidden">Clear</span>
+            </span>
+          </div>
+        </Card>
+      </div>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
